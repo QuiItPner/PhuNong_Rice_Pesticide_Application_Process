@@ -691,15 +691,16 @@ tr.reveal {
 }
 
 .prod-img-stage {
-  height: 244px;
+  height: 250px;
+  padding: 10px 6px 4px;
   display: flex;
-  align-items: flex-end;
+  align-items: center;
   justify-content: center;
   background: radial-gradient(70% 38% at 50% 52%, rgba(46, 139, 69, .15) 0%, rgba(46, 139, 69, .04) 50%, transparent 82%);
   overflow: hidden;
   transition: transform .4s cubic-bezier(.22, 1, .36, 1);
-  -webkit-mask-image: linear-gradient(to bottom, #000 72%, transparent 98%);
-  mask-image: linear-gradient(to bottom, #000 72%, transparent 98%);
+  -webkit-mask-image: linear-gradient(to bottom, #000 85%, transparent 98%);
+  mask-image: linear-gradient(to bottom, #000 85%, transparent 98%);
 }
 
 .prod-card:hover .prod-img-stage img {
@@ -707,7 +708,8 @@ tr.reveal {
 }
 
 .prod-img-stage img {
-  height: 274px;
+  max-height: 100%;
+  max-width: 100%;
   width: auto;
   object-fit: contain;
   filter: drop-shadow(0 14px 16px rgba(20, 50, 25, .22));
@@ -1133,11 +1135,13 @@ tr.reveal {
   }
 
   .prod-img-stage {
-    height: 214px;
+    height: 220px;
+    padding: 8px 4px 2px;
   }
 
   .prod-img-stage img {
-    height: 244px;
+    max-height: 100%;
+    max-width: 100%;
   }
 
   .prod-name {
