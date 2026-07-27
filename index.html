@@ -5,6 +5,18 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Quy trình sử dụng thuốc BVTV trên cây lúa</title>
+
+  <!-- Open Graph Meta Tags cho Zalo, Facebook, Messenger -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Quy trình sử dụng thuốc BVTV trên cây lúa - Nông Dược Phú Nông">
+  <meta property="og:description" content="Hướng dẫn chi tiết quy trình quản lý sâu bệnh hại (rầy nâu, sâu cuốn lá, bệnh đạo ôn, đốm vằn...) và phân bón lá hiệu quả cho cây lúa.">
+  <meta property="og:image" content="img/logo.png">
+  <meta property="og:image:secure_url" content="img/logo.png">
+  <meta property="og:image:type" content="image/png">
+  <meta property="og:image:width" content="600">
+  <meta property="og:image:height" content="315">
+
+  <link rel="preload" as="image" href="img/background_header.jpg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="icon" type="image/png" href="img/favicon.png">
@@ -15,6 +27,8 @@
 </head>
 
 <body>
+  <!-- Thanh load ngang chạy trên cùng khi bấm chuyển trang / xem chi tiết -->
+  <div id="topLoadingBar" class="top-loading-bar" aria-hidden="true"></div>
 
   <header id="stickyHeader" class="sticky-header">
     <div class="sticky-inner">
@@ -453,6 +467,58 @@
       });
       document.addEventListener('keydown', function (e) {
         if (e.key === 'Escape') closeLightbox();
+      });
+    })();
+
+    // Top Loading Bar khi click Xem chi tiết / chuyển link
+    (function () {
+      var bar = document.getElementById('topLoadingBar');
+      if (!bar) return;
+      var timer = null;
+
+      function resetLoading() {
+        if (timer) clearTimeout(timer);
+        bar.classList.remove('active', 'finish');
+        bar.style.width = '0%';
+      }
+
+      function startLoading() {
+        resetLoading();
+        void bar.offsetWidth; // Force reflow
+
+        // Luôn kích hoạt thanh load mượt 96% phát sáng xanh neon liên tục
+        bar.classList.add('active');
+
+        // Tự động finish dọn dẹp sau 6s nếu không chuyển đi
+        timer = setTimeout(function () {
+          bar.classList.add('finish');
+          timer = setTimeout(resetLoading, 400);
+        }, 6000);
+      }
+
+      document.addEventListener('click', function (e) {
+        var a = e.target.closest('a');
+        if (!a) return;
+        var href = a.getAttribute('href');
+        if (href && !href.startsWith('#') && !href.startsWith('javascript:')) {
+          startLoading();
+        }
+      });
+
+      // Tự động dọn dẹp thanh load khi:
+      // 1. Laptop mở tab mới khiến tab cũ mất focus (blur) hoặc bị ẩn (visibilitychange)
+      // 2. Mobile/Desktop quay lại trang (pageshow/focus)
+      window.addEventListener('pageshow', resetLoading);
+      window.addEventListener('focus', resetLoading);
+      window.addEventListener('blur', function () {
+        setTimeout(resetLoading, 400);
+      });
+      document.addEventListener('visibilitychange', function () {
+        if (document.hidden) {
+          setTimeout(resetLoading, 300);
+        } else {
+          resetLoading();
+        }
       });
     })();
   </script>
