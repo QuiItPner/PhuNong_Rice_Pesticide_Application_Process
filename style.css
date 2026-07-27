@@ -29,7 +29,8 @@
 }
 
 html {
-  scroll-behavior: smooth
+  scroll-behavior: smooth;
+  overscroll-behavior-y: none;
 }
 
 /* ============ THANH LOAD NGANG KHI CHUYỂN TRANG (TOP PROGRESS BAR) ============ */
@@ -173,10 +174,11 @@ body::after {
 body {
   font-family: 'Source Sans 3', 'Segoe UI', Roboto, system-ui, -apple-system, sans-serif;
   color: var(--ink);
-  background: var(--dark-base);
+  background: #0c2e17;
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
+  overscroll-behavior-y: none;
 }
 
 img {
@@ -999,12 +1001,13 @@ tr.reveal {
 .footer-bottom {
   max-width: none;
   margin: 52px -20px 0;
-  padding: 22px 20px;
+  padding: 22px 20px calc(22px + env(safe-area-inset-bottom, 0px));
   border-top: 1px solid rgba(255, 255, 255, .12);
   text-align: center;
   color: #9fb69c;
   font-size: .85rem;
   letter-spacing: .03em;
+  background: #0c2e17;
 }
 
 /* ============ RESPONSIVE ============ */
